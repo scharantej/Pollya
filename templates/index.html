@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Reading List</title>
+</head>
+<body>
+<h1>Reading List</h1>
+<form action="/search" method="GET">
+<input type="text" name="query" placeholder="Search for a book...">
+<input type="submit" value="Search">
+</form>
+<br>
+{% if books %}
+<ul>
+{% for book in books %}
+<li>{{ book.title }} by {{ book.author }}
+<form action="/remove_book" method="POST">
+<input type="hidden" name="id" value="{{ book.id }}">
+<input type="submit" value="Remove">
+</form>
+</li>
+{% endfor %}
+</ul>
+{% else %}
+<p>No books found.</p>
+{% endif %}
+<br>
+<a href="/add_book">Add a book</a>
+</body>
+</html>
+
+
